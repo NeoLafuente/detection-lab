@@ -1,0 +1,19 @@
+[project]
+name = "mmdetection"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10, <3.12"
+dependencies = [
+    "torch==2.1.0",
+    # FIX 1: Pin mmcv to 2.1.0 because mmdet requires < 2.2.0
+    "mmcv==2.1.0",
+    "mmdet>=3.3.0",
+    # FIX 2: Force numpy < 2.0.0 to match PyTorch 2.1.0 binaries
+    "numpy<2.0.0",
+]
+
+[tool.uv]
+find-links = [
+    "https://download.openmmlab.com/mmcv/dist/cu121/torch2.1.0/index.html"
+]
