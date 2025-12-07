@@ -1,0 +1,33 @@
+Basándome en el model zoo de MMDetection, te recomendaría estos 3 detectores de objetos con arquitecturas diferentes:
+
+1. YOLOX (Detector YOLO como pediste)
+
+	Tipo: Detector single-stage anchor-free
+	Por qué probarlo:
+		Es una versión moderna y mejorada de YOLO que elimina los anchors y mejora significativamente el rendimiento.
+		Es extremadamente rápido y eficiente, ideal para aplicaciones en tiempo real.
+		YOLOX ofrece un excelente equilibrio entre velocidad y precisión.
+
+2. Faster R-CNN
+
+	Tipo: Detector two-stage basado en regiones
+	Por qué probarlo:
+		Es un clásico y referente en detección de objetos.
+		Utiliza una arquitectura completamente diferente a YOLO (primero genera propuestas de regiones, luego las clasifica), lo que te permitirá comparar el enfoque two-stage vs single-stage.
+		Generalmente ofrece mejor precisión que los modelos single-stage, aunque es más lento.
+
+3. DETR (Detection Transformer)
+
+	Tipo: Detector basado en Transformers
+	Por qué probarlo:
+		Representa una arquitectura completamente diferente basada en transformers en lugar de CNN tradicionales.
+		No usa NMS (Non-Maximum Suppression) y trata la detección como un problema de conjunto directo.
+		Es interesante para ver cómo los transformers están revolucionando la visión por computador.
+
+Resumen de las diferencias:
+
+YOLOX: Rápido, anchor-free, single-stage
+Faster R-CNN: Preciso, anchor-based, two-stage
+DETR: Innovador, transformer-based, end-to-end sin post-procesamiento
+
+Esta combinación te dará una visión completa de las diferentes filosofías en detección de objetos moderna.
