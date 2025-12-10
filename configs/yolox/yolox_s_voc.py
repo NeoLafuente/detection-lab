@@ -35,7 +35,7 @@ model = dict(
         act_cfg=dict(type='Swish')),
     bbox_head=dict(
         type='YOLOXHead',
-        num_classes=20,  # VOC has 20 classes
+        num_classes=20,
         in_channels=128,
         feat_channels=128,
         stacked_convs=2,
@@ -106,7 +106,7 @@ test_pipeline = [
 
 # Data loaders
 train_dataloader = dict(
-    batch_size=8,
+    batch_size=24,
     num_workers=4,
     persistent_workers=True,
     sampler=dict(type='DefaultSampler', shuffle=True),
@@ -119,7 +119,7 @@ train_dataloader = dict(
         pipeline=train_pipeline))
 
 val_dataloader = dict(
-    batch_size=8,
+    batch_size=24,
     num_workers=4,
     persistent_workers=True,
     drop_last=False,
@@ -147,8 +147,8 @@ optim_wrapper = dict(
     paramwise_cfg=dict(norm_decay_mult=0., bias_decay_mult=0.))
 
 # Learning rate config
-max_epochs = 100
-num_last_epochs = 15
+max_epochs = 7 #100
+num_last_epochs = 1 #15
 interval = 10
 
 param_scheduler = [
@@ -196,11 +196,8 @@ default_hooks = dict(
     sampler_seed=dict(type='DistSamplerSeedHook'),
     visualization=dict(type='DetVisualizationHook'))
 
+# Custom hooks - REMOVED YOLOXModeSwitchHook since we don't use Mosaic/MixUp
 custom_hooks = [
-    dict(
-        type='YOLOXModeSwitchHook',
-        num_last_epochs=num_last_epochs,
-        priority=48),
     dict(
         type='EMAHook',
         ema_type='ExpMomentumEMA',
